@@ -6,6 +6,8 @@ from LinearRegression import LinearRegression
 
 X, Y = datasets.make_regression(n_samples = 100, n_features = 1, noise = 20, random_state = 4)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 1234)
+print(X_train, X_test, Y_train, Y_test)
+
 fig = plt.figure(figsize=(8, 6))
 plt.scatter(X[:, 0], Y, color = 'b', marker = 'o', s = 30)
 plt.show()
@@ -19,7 +21,7 @@ def mse(Y_test, predictions) :
     return np.mean((Y_test-predictions)**2)
 
 mse = mse(Y_test, predictions)
-print('Accuracy: ', mse)
+print('Mean Squared Error: ', mse)
 
 prediction_line = l_r.predict(X)
 cmap = plt.get_cmap('viridis')

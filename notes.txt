@@ -1,0 +1,91 @@
+book-Machine learning yearning
+start by implementing something quick n dirty
+linear regression better for less scattered data for more scattered can lead to underfitting
+else use locally weighted linear reg but avoid overfitting
+perceptron poor as discrete
+sigmoid is continuous n better
+logistic reg(discriminative) vs gaussian discriminative analysis/bayes etc(generative) 
+if we know tendency of data(gaussian/ poisson/ etc exponential family) then we can use gda gives better accuracy as general solution
+else if we dont know then logistic regression works better as gda finally implies logistic reg but logistic reg is in itself a weak sense of constraint 
+logistic reg- weaker assumptions, more robust to modelling assumptions(more used on big data where we dont know about data)
+generative(gda)- better for smaller or defined data sets where we know more about tendency of data(computationally efficient)less motivated by performance
+on big data most do well but for small data better designed algos lead by large margin in efficiency and performance
+gda general approach fit probabaility of all classes if the exponential family is same n differs only by natural parametr then we get a linear hypothesis
+naive bayes mainly in nlp n spam classifying
+problem of naives bayes if something hasnt occured yet or always occured then it takes gives absolute answer which is wrong so use laplace smoothing
+we can discretize a continuous feature to discrete feature like marks in a paper can be discretized to buckets/grades etc instead of just marks directly
+naive bayes isnt that competitive with other learning algos
+mostly logistic reg would work better in accuracy than naive bayes
+just that it is computationally efficient and relatively quick to implement, small code
+spammers use mispell words to overcome spam detection
+gda, bayes (generative) r generally great at accuracy but great at quickness so use dependent
+where as regression, svm etc r accurate but iterative and slow
+word embedding techniques to make relations bw words
+svm is better as u dont have to fiddle much with parameters like learnig rate etc and very general boundaries can be found
+generalisation of linear regression(cases of linearly inseperable data)
+FACTOR ANAlYSIS?
+optimimal margin classifier                                   
+geometric margin(euclidean distance), functional margin 
+a cheat in svm to increase functional margin is to scale the parameters w, b by a scaling factor or normalize the w, b. that wont change the prediction but would give better functional margin
+we need to maximise geometric margin
+<x, y> = xT.y (inner product)
+no free lunch theorem- each model fails at some particular sort of data
+optimal margin classifier + kernel trick = svm
+valid kernel functions
+gram matrix/kernel matrix
+mercer theorem
+kernel eg-linear, gaussian(inf dim), polynomial , 
+L1 norm soft margin svm to overcome overfitting(relaxing functional margin constraint)
+earlier we had to think of efficiency of intermediate processes too like inverting matrix, inner product but now this has been done by libs so directly move on
+underfit(high bias), just right, overfit(high varience)
+regularisation, 
+sometimes feature are very different in values so we normalize them to 0-1/-1-1 by subtracting the mean and dividing by standard deviation
+frequentist/bayesian school of statistics
+gaussian prior distribution(we initially have an idea of what is likely)
+to overcome bias varience follow training set >> development set >> testing set  (cross validation-development part)
+cross validation(CV) is used to get optimal model parameters(polynomial deg), or lambda in regulariation,C in L1 margin test, tau in locally weighted etc
+rule of thumb (70% train-30% test), 60% train-20%dev-20%test)etc
+but if size of data is very large then %test decreases greatly as we dont need large data to test accuracy but if we want to observe the effect of very small changes on the outcome then u need large testing data(online add click rate effect on marketing)
+but to just compare accuracy of 2 models we can just do it with thousands of eg but if small diff in efficiency then we can increase test size
+k-fold CV if we have small data but we need to do a alot
+divide data to k parts(say 100 to k=5)
+loop st train on k-1 data test on k'th and repeat for all k
+then take average of performance/error
+then u can check relative performance for different deg of polynomial say...
+final optional test refit the best model on all the data
+k=10 is the most common
+computationally very expensive but for small data effective
+extreme variation- leave one out cv(very small data)k=n<20-50
+F1 score
+feature selection(where all features r not very imp/ weight on how much they contribute to changes)
+(forward search)
+start with empty feature list F. repeat:
+1, try adding feature i to F n see which single feature addition most improves dev set performance
+2, add fi to F
+(other way backward search)
+Data assumptions
+-Data distribution-test, train from a given and same dist 
+Independent samples
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
