@@ -1,32 +1,27 @@
 import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-from LinearRegression import LinearRegression
+from knn import KNN
 
-X, Y = datasets.make_regression(n_samples = 100, n_features = 1, noise = 20, random_state = 4)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 1234)
-print(X_train, X_test, Y_train, Y_test)
-
-fig = plt.figure(figsize=(8, 6))
-plt.scatter(X[:, 0], Y, color = 'b', marker = 'o', s = 30)
-plt.show()
+iris = datasets.load_iris()
+X, y = iris.data, iris.target
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size = 0.2, random_state = 1234)
 
 # LinearRegression Model
-l_r = LinearRegression()
-l_r.fit(X_train, Y_train)
-predictions = l_r.predict(X_test)
+model = KNN(k = 5)
+model.fit(X_train, Y_train)
+predictions = model.predict(X_test)
 
-def mse(Y_test, predictions) :
-    return np.mean((Y_test-predictions)**2)
+def accuracy(Y_test, predictions) :
+    return 100 * np.sum(predictions == Y_test) / len(Y_test)
 
-mse = mse(Y_test, predictions)
-print('Mean Squared Error: ', mse)
+acc = accuracy(Y_test, predictions)
+print(f'Accuracy: {acc}%')
 
-prediction_line = l_r.predict(X)
-cmap = plt.get_cmap('viridis')
-fig  = plt.figure(figsize=(8, 6))
-m1 = plt.scatter(X_train, Y_train, color = cmap(0.9), s = 10)
-m2 = plt.scatter(X_test, Y_test, color = cmap(0.5), s = 10)
-plt.plot(X, prediction_line, color = 'black', linewidth = 1, label = 'Linear Regression Model')
-plt.show()
+# prediction_line = l_r.predict(X)
+# cmap = plt.get_cmap('viridis')
+# fig  = plt.figure(figsize=(8, 6))
+# m1 = plt.scatter(X_train, Y_train, color = cmap(0.9), s = 10)
+# m2 = plt.scatter(X_test, Y_test, color = cmap(0.5), s = 10)
+# plt.plot(X, prediction_line, color = 'black', linewidth = 1, label = 'Linear Regression Model')
+# plt.show()
